@@ -51,19 +51,16 @@ def search_social_media(username):
 # Fonction pour rechercher le nom d'utilisateur
 def search_username(username):
     # Implémentation de la recherche en ligne
-    # Remplacez cette partie avec une requête à une API ou un site Web approprié
-    # Voici un exemple de requête GET à une API fictive (ceci est un exemple générique, vous devrez trouver une API réelle) :
+    # si le username contient un _ le remplacer par - pour les liens de reseaux sociaux
+    username = username.replace("_", "-")
     social_media_results = search_social_media(username)
     data = {}  # Initialize the "data" variable
     data["social_media"] = social_media_results
-    print(data)
-    # response = requests.get(f"https://api.example.com/username?username={username}")
-    # if response.status_code == 200:
-    #   data = response.json()
-    #   return data
-    # else:
-    #   return None
 
+    # dans data remplacer les true par des yes et les false par des no
+    for platform, value in data["social_media"].items():
+        data["social_media"][platform] = "Yes" if value else "No"
+    print(data)
     
 
 # Fonction pour enregistrer le résultat dans un fichier
