@@ -7,10 +7,9 @@ import requests
 from ipwhois import IPWhois
 import ipaddress
 from ipwhois.exceptions import IPDefinedError
-
+from bs4 import BeautifulSoup
 
 # struct de mes lien de resaux sociaux
-
 social_media = {
     "youtube": "https://www.youtube.com/{}",
     "facebook": "https://www.facebook.com/{}",
@@ -20,17 +19,30 @@ social_media = {
     "github": "https://www.github.com/{}"
 }
 
-
 # Fonction pour rechercher le nom complet
 def search_full_name(full_name):
-    # Implémentation de la recherche en ligne
-    # Remplacez cette partie avec une requête à une API ou un site Web approprié
-    # Voici un exemple de requête GET à une API fictive (ceci est un exemple générique, vous devrez trouver une API réelle) :
-    response = requests.get(f"https://api.example.com/search?full_name={full_name}")
+    name, pren = full_name.split()
+    base_url = 'https://www.118000.fr/search?part=1'
+    search_params = f"&who={name} {pren}"
+    full_url = f"{base_url}{search_params}"
+    response = requests.get(full_url)
     if response.status_code == 200:
-        data = response.json()
-        return data
+    # Parse the response content
+        soup = BeautifulSoup(response.content, "html.parser")
+
+        # Attempt to extract the required information
+        try:
+            name = soup.find("h2", {"class": "name title inbl"}).text.strip()
+            addr = soup.find("div", {"class": "h4 address mtreset"}).text.strip()
+            phone = soup.find('a', {'class': 'clickable atel'}).text.strip()
+            result = {"name": name, "address": addr, "number": phone}
+            return result
+        except AttributeError:
+            # If any information is missing, handle gracefully
+            print(f"Could not retrieve all info on page for '{name} {pren}'")
+            return None
     else:
+        print(f"Request failed with status code: {response.status_code}")
         return None
 
 # Fonction pour rechercher l'adresse IP
