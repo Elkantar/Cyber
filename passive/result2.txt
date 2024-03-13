@@ -1,0 +1,15 @@
+IP address: 127.0.0.1
+ISP: Loopback Address
+City Lat/Lon: 1/10 Road, Mesa County, Colorado, United States
+IP address: 82.127.147.42
+ISP: France Telecom - Orange, FR
+City Lat/Lon: Hẻm 147/42 đường số 15, Phường Bình Hưng Hòa, Quận Bình Tân, Thành phố Hồ Chí Minh, 71913, Việt Nam
+IP address: 82.127.147.42
+ISP: France Telecom - Orange, FR
+City Lat/Lon: Hẻm 147/42 đường số 15, Phường Bình Hưng Hòa, Quận Bình Tân, Thành phố Hồ Chí Minh, 71913, Việt Nam
+IP address: 82.127.147.42
+ISP: France Telecom - Orange, FR
+City Lat/Lon: {'status': 'success', 'country': 'France', 'countryCode': 'FR', 'region': 'NOR', 'regionName': 'Normandy', 'city': 'Le Grand-Quevilly', 'zip': '76120', 'lat': 49.4049, 'lon': 1.0391, 'timezone': 'Europe/Paris', 'isp': 'Orange', 'org': '', 'as': 'AS3215 Orange S.A.', 'query': '82.127.147.42'}
+IP address: 37.170.151.170
+ISP: FREEM, FR
+City Lat/Lon: {'status': 'success', 'country': 'France', 'countryCode': 'FR', 'region': 'IDF', 'regionName': 'Île-de-France', 'city': 'Paris', 'zip': '75008', 'lat': 48.8714, 'lon': 2.32141, 'timezone': 'Europe/Paris', 'isp': 'Free Mobile SAS', 'org': 'Free Mobile', 'as': 'AS51207 Free Mobile SAS', 'query': '37.170.151.170'}

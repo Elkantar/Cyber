@@ -2,6 +2,12 @@ import argparse
 import os
 import requests
 import json
+from ipwhois import IPWhois
+import requests
+from ipwhois import IPWhois
+import ipaddress
+from ipwhois.exceptions import IPDefinedError
+
 
 # struct de mes lien de resaux sociaux
 
@@ -28,17 +34,47 @@ def search_full_name(full_name):
         return None
 
 # Fonction pour rechercher l'adresse IP
+def get_location(ip_address):
+    response = requests.get(f'http://ip-api.com/json/{ip_address}')
+    data = response.json()
+    return data
+
+
+
+
+
+def get_operator(ip):
+    try:
+        # Check if the IP address is loopback
+        if ipaddress.ip_address(ip).is_loopback:
+            return "Loopback Address"
+        
+        # If not loopback, proceed with IPWhois lookup
+        obj = IPWhois(ip)
+        results = obj.lookup_rdap()
+        return results['asn_description']
+    except ipaddress.AddressValueError:
+        return "Invalid IP Address"
+    except IPDefinedError:
+        return "IP Address already defined as Loopback via RFC 1122, Section 3.2.1.3."
+    except Exception as e:
+        return str(e)
+
+
+
 def search_ip(ip):
     # Implémentation de la recherche en ligne
     # Remplacez cette partie avec une requête à une API ou un site Web approprié
     # Voici un exemple de requête GET à une API fictive (ceci est un exemple générique, vous devrez trouver une API réelle) :
-    response = requests.get(f"https://api.example.com/ip?ip={ip}")
-    if response.status_code == 200:
-        data = response.json()
-        return data
+
+    # comment a partir de l'ip je doit retrouver la localistaion de l'ip et l'herbergeur
+    location = get_location(ip)
+    operator = get_operator(ip)
+    if location and operator:
+        return {"city": location, "isp": operator}
     else:
         return None
-
+    
 # Fonction pour rechercher les liens de réseaux sociaux
 def search_social_media(username):
 
