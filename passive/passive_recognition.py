@@ -39,10 +39,6 @@ def get_location(ip_address):
     data = response.json()
     return data
 
-
-
-
-
 def get_operator(ip):
     try:
         # Check if the IP address is loopback
