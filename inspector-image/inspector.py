@@ -40,7 +40,7 @@ def get_location(image_path):
     return None, None
 
 def get_pgp_key(image_path):
-     with open(image_path, 'rb') as file:  # Ouvrez le fichier en mode binaire ('rb')
+    with open(image_path, 'rb') as file:  # Ouvrez le fichier en mode binaire ('rb')
         key_data = file.read().decode('latin-1')  # Décodez le contenu avec l'encodage approprié (latin-1)
         # Trouver l'indice de début et de fin de la clé publique
         begin_index = key_data.find('-----BEGIN PGP PUBLIC KEY BLOCK-----')
