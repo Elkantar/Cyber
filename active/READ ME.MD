@@ -36,7 +36,7 @@ A simple port scanner written in Python.
 5. Example usage:
 
     ```shell
-    python port_scanner.py example.com -p 1-100 -t
+    python port_scanner.py -p 1-100 -t
     ```
 
 ## Warning
