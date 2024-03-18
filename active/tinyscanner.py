@@ -1,6 +1,5 @@
 import socket
 import argparse
-import sys
 
 def scan_port(host, port, protocol):
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM if protocol == 't' else socket.SOCK_DGRAM)
