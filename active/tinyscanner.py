@@ -8,7 +8,7 @@ def scan_port(host, port, protocol):
     try:
         sock.connect((host, port))
         return True
-    except:
+    except Exception:
         return False
     finally:
         sock.close()
